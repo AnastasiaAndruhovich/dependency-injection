@@ -1,9 +1,6 @@
 package by.andruhovich.di;
 
-import by.andruhovich.di.controller.ConstructorInjectedController;
-import by.andruhovich.di.controller.MyController;
-import by.andruhovich.di.controller.PropertyInjectedController;
-import by.andruhovich.di.controller.SetterInjectedController;
+import by.andruhovich.di.controller.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -11,33 +8,36 @@ import org.springframework.context.ApplicationContext;
 @SpringBootApplication
 public class DependencyInjectionApplication {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		ApplicationContext ctx = SpringApplication.run(DependencyInjectionApplication.class, args);
+        ApplicationContext ctx = SpringApplication.run(DependencyInjectionApplication.class, args);
 
-		MyController myController = (MyController)  ctx.getBean("myController");
+        I18nController i18nController = (I18nController) ctx.getBean("i18nController");
+        System.out.println(i18nController.sayHello());
 
-		System.out.println("-----------Primary Bean");
-		System.out.println(myController.sayHello());
+        MyController myController = (MyController) ctx.getBean("myController");
 
-		System.out.println("-----------Property");
+        System.out.println("-----------Primary Bean");
+        System.out.println(myController.sayHello());
 
-		PropertyInjectedController propertyInjectedController = (PropertyInjectedController) ctx.getBean("propertyInjectedController");
+        System.out.println("-----------Property");
 
-		System.out.println(propertyInjectedController.getGreeting());
+        PropertyInjectedController propertyInjectedController = (PropertyInjectedController) ctx.getBean("propertyInjectedController");
 
-		System.out.println("-----------Setter");
+        System.out.println(propertyInjectedController.getGreeting());
 
-		SetterInjectedController setterInjectedController = (SetterInjectedController) ctx.getBean("setterInjectedController");
+        System.out.println("-----------Setter");
 
-		System.out.println(setterInjectedController.getGreeting());
+        SetterInjectedController setterInjectedController = (SetterInjectedController) ctx.getBean("setterInjectedController");
 
-		System.out.println("-----------Constructor");
+        System.out.println(setterInjectedController.getGreeting());
 
-		ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
+        System.out.println("-----------Constructor");
 
-		System.out.println(constructorInjectedController.getGreeting());
+        ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
 
-	}
+        System.out.println(constructorInjectedController.getGreeting());
+
+    }
 
 }
