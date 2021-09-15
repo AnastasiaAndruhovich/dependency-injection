@@ -2,7 +2,6 @@ package by.andruhovich.di.service;
 
 import org.springframework.stereotype.Service;
 
-@Service
 public class SetterGreetingService implements GreetingService {
 
     @Override
