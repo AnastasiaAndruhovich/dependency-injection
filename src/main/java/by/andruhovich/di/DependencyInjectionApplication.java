@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan(basePackages = {"by.andruhovich.di", "com.andruhovich.di"})
 @SpringBootApplication
 public class DependencyInjectionApplication {
 
