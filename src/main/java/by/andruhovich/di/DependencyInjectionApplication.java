@@ -1,9 +1,11 @@
 package by.andruhovich.di;
 
+import by.andruhovich.di.config.ConfigurationBean;
 import by.andruhovich.di.controller.*;
 import by.andruhovich.di.datasource.FakeDataSource;
 import by.andruhovich.di.service.PrototypeBean;
 import by.andruhovich.di.service.SingletonBean;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -55,6 +57,13 @@ public class DependencyInjectionApplication {
         System.out.println(fakeDataSource.getUsername());
         System.out.println(fakeDataSource.getPassword());
         System.out.println(fakeDataSource.getJdbcurl());
+
+        System.out.println("---------- Config Props Bean ----------");
+        ConfigurationBean configurationBean = ctx.getBean(ConfigurationBean.class);
+        System.out.println(configurationBean.getUsername());
+        System.out.println(configurationBean.getPassword());
+        System.out.println(configurationBean.getJdbcurl());
+
     }
 
 }
