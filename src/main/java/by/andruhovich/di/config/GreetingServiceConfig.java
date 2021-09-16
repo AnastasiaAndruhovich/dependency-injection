@@ -6,7 +6,6 @@ import by.andruhovich.di.repository.EnglishGreetingRepositoryImpl;
 import by.andruhovich.di.service.*;
 import com.andruhovich.di.PetService;
 import com.andruhovich.di.PetServiceFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 
 @ImportResource("classpath:di-config.xml")
@@ -14,11 +13,11 @@ import org.springframework.context.annotation.*;
 public class GreetingServiceConfig {
 
     @Bean
-    FakeDataSource fakeDataSource(@Value("${by.username}") String username, @Value("${by.password}") String password, @Value("${by.jdbcurl}") String jdbcurl) {
+    FakeDataSource fakeDataSource(ConfigurationBean configurationBean) {
         FakeDataSource fakeDataSource = new FakeDataSource();
-        fakeDataSource.setUsername(username);
-        fakeDataSource.setPassword(password);
-        fakeDataSource.setJdbcurl(jdbcurl);
+        fakeDataSource.setUsername(configurationBean.getUsername());
+        fakeDataSource.setPassword(configurationBean.getPassword());
+        fakeDataSource.setJdbcurl(configurationBean.getJdbcurl());
         return fakeDataSource;
     }
 
