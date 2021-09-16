@@ -5,13 +5,12 @@ import by.andruhovich.di.repository.EnglishGreetingRepositoryImpl;
 import by.andruhovich.di.service.*;
 import com.andruhovich.di.PetService;
 import com.andruhovich.di.PetServiceFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.*;
 
+@ImportResource("classpath:di-config.xml")
 @Configuration
 public class GreetingServiceConfig {
+
     @Bean
     PetServiceFactory petServiceFactory() {
         return new PetServiceFactory();
@@ -52,10 +51,10 @@ public class GreetingServiceConfig {
         return new PrimaryGreetingService();
     }
 
-    @Bean
+    /*@Bean
     ConstructorGreetingService constructorGreetingService() {
         return new ConstructorGreetingService();
-    }
+    }*/
 
     @Bean
     PropertyGreetingService propertyGreetingService() {
