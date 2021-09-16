@@ -6,18 +6,20 @@ import by.andruhovich.di.repository.EnglishGreetingRepositoryImpl;
 import by.andruhovich.di.service.*;
 import com.andruhovich.di.PetService;
 import com.andruhovich.di.PetServiceFactory;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.*;
 
+@EnableConfigurationProperties(ConstructorConfigurationBean.class)
 @ImportResource("classpath:di-config.xml")
 @Configuration
 public class GreetingServiceConfig {
 
     @Bean
-    FakeDataSource fakeDataSource(ConfigurationBean configurationBean) {
+    FakeDataSource fakeDataSource(ConstructorConfigurationBean constructorConfigurationBean) {
         FakeDataSource fakeDataSource = new FakeDataSource();
-        fakeDataSource.setUsername(configurationBean.getUsername());
-        fakeDataSource.setPassword(configurationBean.getPassword());
-        fakeDataSource.setJdbcurl(configurationBean.getJdbcurl());
+        fakeDataSource.setUsername(constructorConfigurationBean.getUsername());
+        fakeDataSource.setPassword(constructorConfigurationBean.getPassword());
+        fakeDataSource.setJdbcurl(constructorConfigurationBean.getJdbcurl());
         return fakeDataSource;
     }
 

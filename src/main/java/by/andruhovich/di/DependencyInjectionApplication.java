@@ -1,15 +1,14 @@
 package by.andruhovich.di;
 
 import by.andruhovich.di.config.ConfigurationBean;
+import by.andruhovich.di.config.ConstructorConfigurationBean;
 import by.andruhovich.di.controller.*;
 import by.andruhovich.di.datasource.FakeDataSource;
 import by.andruhovich.di.service.PrototypeBean;
 import by.andruhovich.di.service.SingletonBean;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 public class DependencyInjectionApplication {
@@ -38,11 +37,11 @@ public class DependencyInjectionApplication {
         SetterInjectedController setterInjectedController = (SetterInjectedController) ctx.getBean("setterInjectedController");
         System.out.println(setterInjectedController.getGreeting());
 
-        System.out.println("-------- Constructor" );
+        System.out.println("-------- Constructor");
         ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
         System.out.println(constructorInjectedController.getGreeting());
 
-        System.out.println("-------- Bean Scopes ---------------------" );
+        System.out.println("-------- Bean Scopes ---------------------");
         SingletonBean singletonBean1 = ctx.getBean(SingletonBean.class);
         System.out.println(singletonBean1.getMyScope());
         SingletonBean singletonBean2 = ctx.getBean(SingletonBean.class);
@@ -53,6 +52,7 @@ public class DependencyInjectionApplication {
         PrototypeBean prototypeBean2 = ctx.getBean(PrototypeBean.class);
         System.out.println(prototypeBean2.getMyScope());
 
+        System.out.println("---------- Fake Data Source ----------");
         FakeDataSource fakeDataSource = ctx.getBean(FakeDataSource.class);
         System.out.println(fakeDataSource.getUsername());
         System.out.println(fakeDataSource.getPassword());
@@ -63,6 +63,12 @@ public class DependencyInjectionApplication {
         System.out.println(configurationBean.getUsername());
         System.out.println(configurationBean.getPassword());
         System.out.println(configurationBean.getJdbcurl());
+
+        System.out.println("---------- Constructor Binding ----------------");
+        ConstructorConfigurationBean constructorConfigurationBean = ctx.getBean(ConstructorConfigurationBean.class);
+        System.out.println(constructorConfigurationBean.getUsername());
+        System.out.println(constructorConfigurationBean.getPassword());
+        System.out.println(constructorConfigurationBean.getJdbcurl());
 
     }
 
